@@ -25,9 +25,9 @@
   //   console.log(a, b, c, d)
 
 //phase 3
-    let score= "33sbc"
-    console.log(typeof(score), typeof score, score) 
-    let num= Number(score)
-    console.log(typeof(num), typeof num, num) 
+    // let score= "33sbc"
+    // console.log(typeof(score), typeof score, score) 
+    // let num= Number(score)
+    // console.log(typeof(num), typeof num, num) 
 
 //phase 4: datetime, timestamp
