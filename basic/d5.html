@@ -1,0 +1,36 @@
+<!-- used addEventListener("click", function(){}) -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id= "lg">
+        Name: <input id= "nam" type="text" name="name" placeholder="Enter Your Name">
+        Password: <input id= "pas" type="password" name="psword" placeholder="Enter the password">
+        <input type="submit">
+        <p id= "err" style= "color: red;"></p>
+    </form>
+    <script>
+        let a = document.getElementById("lg");
+        a.addEventListener("submit", function(event){
+            event.preventDefault();
+            n= document.getElementById("nam").value.trim();
+            p= document.getElementById("pas").value.trim();
+            if (n.length==0){
+                document.getElementById("err").innerText= "too small of a name";
+            }
+            else if (p.length< 6){
+                document.getElementById("err").innerText= "too small password";
+            }
+            else{
+                document.getElementById("err").innerText= "";
+                alert("well done");
+            }
+        });
+    </script>
+</body>
+</html>
