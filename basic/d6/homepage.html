@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homepage</title>
+	<style>
+		body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: linear-gradient(120deg, #b8990f 0%, #d5fc25 100%);
+			color: #fff;}
+		.menu { background: #333; color: #fff; padding: 1em; display: flex; gap: 2em; }
+		.menu a { color: #fff; text-decoration: none; font-weight: bold; }
+		.container { max-width: 900px; margin: 2em auto; }
+		.hero-card {
+			background: linear-gradient(120deg, #6a11cb 0%, #2575fc 100%);
+			color: #fff;
+			padding: 2em;
+			border-radius: 12px;
+			box-shadow: 0 2px 12px rgba(80,80,200,0.15);
+			margin-bottom: 2em;
+			text-align: center;
+		}
+		.cards {
+			display: flex;
+			gap: 2em;
+			justify-content: center;
+		}
+		.card {
+			background: linear-gradient(120deg, #6a11cb 0%, #2575fc 100%);
+			color: #fff;
+			padding: 2em 1.5em;
+			border-radius: 10px;
+			box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+			flex: 1 1 300px;
+			max-width: 350px;
+			min-width: 250px;
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+		}
+		h2 { margin-top: 0; }
+		form { display: flex; flex-direction: column; gap: 1em; }
+		label { font-weight: bold; }
+		input[type="text"], input[type="password"], input[type="email"] { padding: 0.5em; border: 1px solid #ccc; border-radius: 4px; }
+		button { padding: 0.7em; background: #333; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
+		button:hover { background: #555; }
+		@media (max-width: 900px) { .cards { flex-direction: column; align-items: center; } .card { max-width: 100%; width: 100%; } }
+		.hero-full { width: 100%; background: #e9eefc; padding: 1.5em 0; }
+		.hero-inner { max-width: 1200px; margin: 0 auto; display:flex; align-items:center; justify-content:space-between; padding:0 1rem; }
+		.hero-content { text-align:center; color:#102a43; }
+		.hero .car { font-size:2.2rem; }
+		.layout { display:flex; gap:1rem; max-width:1200px; margin:1.5rem auto; padding:0 1rem; }
+		.sidebar { width:200px; }
+		.sidebar ul { list-style:none; padding:0; margin:0; background:#fff; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+		.sidebar li { border-bottom:1px solid #f0f0f0; }
+		.sidebar a { display:block; padding:0.9em 1em; color:#333; text-decoration:none; }
+		.main { flex:1; }
+		.news-viewport { height:48px; overflow:hidden; background:#fff; border-radius:8px; display:flex; align-items:center; padding:0 1rem; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+		.news-track { white-space:nowrap; display:inline-block; transform:translateX(-100%); animation: marquee 12s linear infinite; }
+		@keyframes marquee { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+		.content { margin-top:1rem; background:#fff; padding:1rem; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+		.auth { width:340px; }
+		.auth-card { padding:1rem; }
+		.tabs { display:flex; gap:0.5rem; margin-bottom:1rem; }
+		.tab { flex:1; padding:0.6rem; background:#f1f5f9; border:none; cursor:pointer; border-radius:6px; }
+		.tab.active { background:#102a43; color:#fff; }
+		.tab-content { }
+		.tab-pane h2 { margin-top:0; }
+		@media (max-width:900px){ .layout{flex-direction:column;} .sidebar{width:100%} .auth{width:100%} }
+	</style>
+</head>
+<body>
+	<div class="hero-full">
+		<div class="hero-inner">
+			<span class="car left">🚗</span>
+			<div class="hero-content">
+				<h1>Welcome to the Portal</h1>
+				<p>Your one-stop portal for login, registration and updates.</p>
+			</div>
+			<span class="car right">🚗</span>
+		</div>
+	</div>
+
+	<div class="layout">
+		<aside class="sidebar">
+			<ul>
+				<li><a href="#home">Home</a></li>
+				<li><a href="#news">News</a></li>
+				<li><a href="#features">Features</a></li>
+				<li><a href="#contact">Contact</a></li>
+			</ul>
+		</aside>
+		<main class="main">
+			<section class="news" id="news">
+				<div class="news-viewport">
+					<div class="news-track">Latest: Site updates coming soon — New features rolling out this month!</div>
+				</div>
+			</section>
+			<section class="content">
+				<h3>Highlights</h3>
+				<p>Placeholder area for middle content. Add cards, widgets or summaries here.</p>
+			</section>
+		</main>
+		<aside class="auth">
+			<div class="card auth-card">
+				<div class="tabs">
+					<button class="tab active" data-tab="login">Login</button>
+					<button class="tab" data-tab="register">Register</button>
+				</div>
+				<div class="tab-content">
+					<div class="tab-pane" id="login-pane">
+						<h2>Login</h2>
+						<form id="login-form" action= "login.html" method= "get">
+							<label for="login-username">Username</label>
+							<input type="text" id="login-username" name="login-username" required>
+							<label for="login-password">Password</label>
+							<input type="password" id="login-password" name="login-password" required>
+							<button type="submit">Login</button>
+						</form>
+					</div>
+					<div class="tab-pane" id="register-pane" style="display:none;">
+						<h2>Register</h2>
+						<form id="reg-form">
+							<label for="reg-username">Username</label>
+							<input type="text" id="reg-username" name="reg-username" required>
+							<label for="reg-email">Email</label>
+							<input type="email" id="reg-email" name="reg-email" required>
+							<label for="reg-password">Password</label>
+							<input type="password" id="reg-password" name="reg-password" required>
+							<button type="submit">Register</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</aside>
+	</div>
+	<script>
+		// Tabs for auth card
+		document.querySelectorAll('.tab').forEach(function(btn){
+			btn.addEventListener('click', function(){
+				document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+				btn.classList.add('active');
+				var tab = btn.getAttribute('data-tab');
+				if(tab === 'login'){
+					document.getElementById('login-pane').style.display = '';
+					document.getElementById('register-pane').style.display = 'none';
+				} else {
+					document.getElementById('login-pane').style.display = 'none';
+					document.getElementById('register-pane').style.display = '';
+				}
+			});
+		});
+		// Keep register demo handling, allow login form to follow its `action`
+		document.getElementById('reg-form').addEventListener('submit', function(e){ e.preventDefault(); alert('Register submitted (demo)'); });
+	</script>
+</body>
+</html>
+ 

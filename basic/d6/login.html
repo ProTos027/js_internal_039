@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id= "user"></h1>
+    <script>
+        let params= new URLSearchParams(window.location.search);
+        let user= params.get("login-username");
+        let pass= params.get("login-password");
+        document.getElementById("user").innerText= `Hello $(user) ! Your password is $(pass).`;
+    </script>
+</body>
+</html>
+<!-- transfer different type of vals, post plus validation-->
