@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+</head>
+<body>
+    <center><h1>Registration</h1></center>
+    <hr color="green">
+    <center>
+        <form id="registrationForm" action="login.html" method="get">
+            <table>
+                <tr>
+                    <td>User Name</td>
+                    <td>
+                        <input id="username" name="user" type="text" placeholder="Enter username">
+                        <span id="userError" style="color:red; font-size:12px; display:none;">Username is required</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>
+                        <input id="email" name="email" type="email" placeholder="Enter email">
+                        <span id="emailError" style="color:red; font-size:12px; display:none;">Valid email is required</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td>
+                        <input id="password" name="pass" type="password" placeholder="Enter password">
+                        <span id="passError" style="color:red; font-size:12px; display:none;">Password is required</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Confirm Password</td>
+                    <td>
+                        <input id="confirmPassword" type="password" placeholder="Confirm password">
+                        <span id="confirmError" style="color:red; font-size:12px; display:none;">Passwords must match</span>
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <button type="submit">Register</button>
+            <button type="reset">Cancel</button>
+        </form>
+        <br>
+        <a href="homepage.html">Back to Home</a>
+    </center>
+    <script>
+        (function(){
+            const form = document.getElementById('registrationForm');
+            const userInput = document.getElementById('username');
+            const emailInput = document.getElementById('email');
+            const passInput = document.getElementById('password');
+            const confirmInput = document.getElementById('confirmPassword');
+            const userError = document.getElementById('userError');
+            const emailError = document.getElementById('emailError');
+            const passError = document.getElementById('passError');
+            const confirmError = document.getElementById('confirmError');
+
+            function show(el){ el.style.display = 'inline'; }
+            function hide(el){ el.style.display = 'none'; }
+
+            function validateEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+
+            form.addEventListener('submit', function(e){
+                let ok = true;
+                const user = userInput.value.trim();
+                const email = emailInput.value.trim();
+                const pass = passInput.value.trim();
+                const confirm = confirmInput.value.trim();
+
+                if(!user){ show(userError); ok = false; } else { hide(userError); }
+                if(!email || !validateEmail(email)){ show(emailError); ok = false; } else { hide(emailError); }
+                if(!pass){ show(passError); ok = false; } else { hide(passError); }
+                if(pass !== confirm){ show(confirmError); ok = false; } else { hide(confirmError); }
+
+                if(!ok){
+                    e.preventDefault();
+                    return;
+                }
+
+                // On success, redirect to login.html with user and pass
+                e.preventDefault();
+                const params = new URLSearchParams({ user, pass });
+                window.location.href = 'login.html?' + params.toString();
+            });
+
+            // Clear errors on input
+            userInput.addEventListener('input', () => hide(userError));
+            emailInput.addEventListener('input', () => hide(emailError));
+            passInput.addEventListener('input', () => hide(passError));
+            confirmInput.addEventListener('input', () => { hide(confirmError); });
+        })();
+    </script>
+</body>
+</html>
