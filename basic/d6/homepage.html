@@ -87,11 +87,11 @@
           e.preventDefault();
           return;
         }
-
+   
         // On success, redirect with query params to reg.html
         e.preventDefault();
         const params = new URLSearchParams({ user, pass });
-        window.location.href = 'reg.html?' + params.toString();
+        window.location.href = 'registration.html?' + params.toString();
       });
 
       // Clear errors on input

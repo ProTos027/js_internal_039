@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration</title>
+
+<style>
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #4e73df;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    background: white;
+    width: 380px;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+table {
+    width: 100%;
+}
+
+td {
+    padding: 8px 0;
+    font-size: 14px;
+}
+
+input[type="text"],
+input[type="email"],
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.radio-group {
+    display: flex;
+    gap: 10px;
+}
+
+.terms {
+    padding-top: 10px;
+}
+
+.buttons {
+    margin-top: 20px;
+    text-align: center;
+}
+
+button {
+    padding: 8px 18px;
+    margin: 0 5px;
+    border: none;
+    background: #4e73df;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #2e59d9;
+}
+
+#messageBox {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    padding: 15px;
+    display: none;
+    background: #f8f9fc;
+    border-radius: 6px;
+    font-size: 14px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+#messageBox.success {
+    border-left: 4px solid green;
+}
+
+#messageBox.error {
+    border-left: 4px solid red;
+    color: darkred;
+}
+
+.record {
+    margin-top: 5px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Registration</h1>
+
+    <form id="registrationForm" novalidate>
+        <table>
+            <tr>
+                <td>Username</td>
+                <td><input type="text" id="username"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="email" id="email"></td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td class="radio-group">
+                    <label><input type="radio" name="gender" value="Male"> Male</label>
+                    <label><input type="radio" name="gender" value="Female"> Female</label>
+                </td>
+            </tr>
+            <tr>
+                <td>Course</td>
+                <td>
+                    <select id="course">
+                        <option value="">Select Course</option>
+                        <option>Computer Science</option>
+                        <option>Engineering</option>
+                        <option>Business</option>
+                        <option>Arts</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="terms">
+                    <input type="checkbox" id="terms">
+                    <label for="terms">I agree to the terms and conditions</label>
+                </td>
+            </tr>
+        </table>
+
+        <div class="buttons">
+            <button type="submit">Register</button>
+            <button type="reset">Cancel</button>
+        </div>
+    </form>
+</div>
+
+<div id="messageBox"></div>
+
+<script>
+const form = document.getElementById("registrationForm");
+const box = document.getElementById("messageBox");
+
+function showMessage(content, type) {
+    box.className = type;
+    box.innerHTML = content;
+    box.style.display = "block";
+    setTimeout(() => box.style.display = "none", 4000);
+}
+
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const username = document.getElementById("username").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const gender = document.querySelector("input[name='gender']:checked");
+    const course = document.getElementById("course").value;
+    const terms = document.getElementById("terms").checked;
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!username) return showMessage("Username is required", "error");
+    if (!email || !emailPattern.test(email)) return showMessage("Enter a valid email address", "error");
+    if (!gender) return showMessage("Please select gender", "error");
+    if (!course) return showMessage("Please select a course", "error");
+    if (!terms) return showMessage("You must accept the terms", "error");
+
+    showMessage(`
+        <strong>Registration Successful</strong>
+        <div class="record"><b>Username:</b> ${username}</div>
+        <div class="record"><b>Email:</b> ${email}</div>
+        <div class="record"><b>Gender:</b> ${gender.value}</div>
+        <div class="record"><b>Course:</b> ${course}</div>
+        <div class="record"><b>Terms:</b> Accepted</div>
+    `, "success");
+});
+</script>
+
+</body>
+</html>
